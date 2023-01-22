@@ -1,0 +1,24 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: proxy
+  cloud:
+    gateway:
+      routes:
+        - id: company
+          uri:
+            http://localhost:8082/
+          predicates:
+          - Path=/processing/**
+        - id: express
+          uri:
+            http://localhost:4000/
+          predicates:
+          - Path=/express/**
+     
+    
+eureka:
+  client:
+     serviceUrl:
+      defaultZone: http://localhost:8760/eureka/
