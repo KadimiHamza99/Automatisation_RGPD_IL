@@ -16,7 +16,7 @@ public class GdprData {
 	private boolean isModifiable;
 	private int dataTypeID;
 	private String data_ID_ref;
-	private int dataSubjectID;
+	private int dataSubjectCategoryID;
 	private Date creationDate;
 	private Date lastModificationDate;
 	private Date deletionDate;

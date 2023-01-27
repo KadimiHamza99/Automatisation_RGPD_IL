@@ -11,4 +11,7 @@ Automatisation de la prise en compte de la RGPD dans le développement logiciel 
 
 ### il vous faut aussi creer les bases de données suivantes : GPDR,GPRD_MICROSERVICE_PROCESSINGS,GDPR_MICROSERVICE_CONSENTS, et aussi configurer les credentials de votre base de données dans le fichier cloud-conf\*
 
-- Il vous faut alors créer un repository git dans le dossier users de votre machine que vous allez appeler cloud-conf et la vous allez mettre vos configuration pour les microservices springboot vous trouverez notre cloud-conf dans ce repo mais vous devez le déplacer sur 'C:/utilisateurs/USERNAME/'
+- Il vous faut alors créer un repository git dans le dossier users de votre machine que vous allez appeler cloud-conf et la vous allez mettre vos configuration pour les microservices springboot vous trouverez notre cloud-conf dans ce repo mais vous devez le déplacer sur 'C:/utilisateurs/USERNAME/' à savoir que notre exemple cloud conf n'est pas un repo donc il faut aprés l'ajout executer les commandes suivantes
+  -- git init
+  -- git add .
+  et chaque fois vous ajouter une modification il faut forcement re executer la commande git add . et aussi relancer le serveur de configuration

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import io.kadev.dto.Actor;
-import io.kadev.dto.DataSubject;
+import io.kadev.dto.DataSubjectCategory;
+import io.kadev.dto.GdprData;
 import io.kadev.dto.ProcessingApiResponse;
 import io.kadev.models.Processing;
 import io.kadev.services.ProcessingServiceInterface;
@@ -44,28 +44,34 @@ public class ProcessingController {
 	@GetMapping("/{id}")
 	public ProcessingApiResponse getProcessing(@PathVariable Long id) {
 		Processing processing = service.getProcessing(id);
-		List<Actor> actors = new ArrayList<Actor>();
-		processing.getActorsId().stream().forEach(actorId->{
-			Actor actor = template.getForObject("http://localhost:8080/express/dataSubject/getById/"+actorId, 
-					DataSubject.class);
-			actors.add(actor);
+		List<GdprData> datas = new ArrayList<GdprData>();
+		List<DataSubjectCategory> dscs = new ArrayList<DataSubjectCategory>(); 
+		processing.getDataUsages().stream().forEach(dataUsage->{
+			GdprData data = template.getForObject("http://localhost:8080/express/data/getById/"+dataUsage.getDataId(), GdprData.class);
+			datas.add(data);
+			DataSubjectCategory dsc = template.getForObject("http://localhost:8080/express/dataSubjectCategory/getById/"+data.getDataSubjectCategoryID(), DataSubjectCategory.class);
+			dscs.add(dsc);
 		});
-		ProcessingApiResponse response = new ProcessingApiResponse(actors, processing);
+		ProcessingApiResponse response = new ProcessingApiResponse(processing,datas,dscs);
 		return response;
 	}
 	
-	@GetMapping("")
-	public Collection<ProcessingApiResponse> getProcessings(){
-		Collection<ProcessingApiResponse> response = new ArrayList<ProcessingApiResponse>();
-		service.getProcessings().stream().forEach(processing->{
-			List<Actor> actors = new ArrayList<Actor>();
-			processing.getActorsId().stream().forEach(actorId->{
-				Actor actor = template.getForObject("http://localhost:8080/express/dataSubject/getById/"+actorId, 
-						DataSubject.class);
-				actors.add(actor);
+	@GetMapping("{dscID}")
+	public Collection<ProcessingApiResponse> getProcessings(@PathVariable int dscID){
+		Collection<Processing> processings = service.getProcessings();
+		List<ProcessingApiResponse> responses = new ArrayList<ProcessingApiResponse>();
+		processings.stream().forEach(processing -> {
+			List<GdprData> datas = new ArrayList<GdprData>();
+			List<DataSubjectCategory> dscs = new ArrayList<DataSubjectCategory>(); 
+			processing.getDataUsages().stream().forEach(dataUsage->{
+				GdprData data = template.getForObject("http://localhost:8080/express/data/getById/"+dataUsage.getDataId(), GdprData.class);
+				datas.add(data);
+				DataSubjectCategory dsc = template.getForObject("http://localhost:8080/express/dataSubjectCategory/getById/"+data.getDataSubjectCategoryID(), DataSubjectCategory.class);
+				dscs.add(dsc);
 			});
-			response.add(new ProcessingApiResponse(actors,processing));
+			ProcessingApiResponse response = new ProcessingApiResponse(processing,datas,dscs);
+			responses.add(response);
 		});
-		return response;
+		return responses;
 	}
 }

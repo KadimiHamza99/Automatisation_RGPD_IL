@@ -5,12 +5,14 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,13 +23,12 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import io.kadev.enumerations.ProcessingCategory;
 import io.kadev.enumerations.ProcessingType;
-import io.kadev.enumerations.PurposeType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "GDPR_PROCESSING")
+@Table(name = "gdpr_Processing")
 @Data @AllArgsConstructor @NoArgsConstructor
 public class Processing {
 	
@@ -51,13 +52,13 @@ public class Processing {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatingDate;
 	
-	private String purposeDescription;
-	
-	private PurposeType purposeType;
-	
-	@ElementCollection(targetClass=Integer.class)
-	private List<Integer> actorsId;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private List<DataUsage> dataUsages;
 	
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<DataUsage> dataUsages;
+	private List<Purpose> purposes;
+	
+	@ManyToMany
+	@JoinTable(name = "gdpr_ProcessingMesure", joinColumns = @JoinColumn(name = "processingID", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "mesureID", referencedColumnName = "mesureID"))
+	private List<Mesure> mesures;
 }

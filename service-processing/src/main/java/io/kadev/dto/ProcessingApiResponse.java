@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor @Builder 
 public class ProcessingApiResponse {
-	private List<Actor> actors;
 	private Processing processing;
+	private List<GdprData> datas;
+	private List<DataSubjectCategory> dsc;
 }
