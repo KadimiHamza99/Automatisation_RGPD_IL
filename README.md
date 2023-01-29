@@ -1,17 +1,82 @@
-#Automatisation_RGPD_IL
-Automatisation de la prise en compte de la RGPD dans le développement logiciel – avec une approche microservices
+# Automatisation_RGPD_IL
 
-## L'architecture microservices est realisé en Springboot, Elle contient un serveur de configuration pour les microservices springboot et un service d'enregistrement Eureka pour enregistrer les microservices de l'application et un serveur proxy qui joue le role d'un gateway pour intercepter toutes les requétes envoyer par l'application Front-end
+## Table of Contents
 
-## Ce projet contient aussi des microservices qui sont codé avec d'autres languages (ExpressJS-TypeScript/Flask-Python) et qui sont liés à l'architecture Springboot comme étant des clients Eureka
+- [about](#about)
+- [Getting Started](#getting_started)
+- [Usage](#usage)
 
-## Ce projet contient aussi une application frontend qui consomme les endpoints réalisé développer en Angular
+## About <a name = "about"></a>
 
-### Pour faire executer cette application il faut executer d'abord le serveur de configuration ensuite le serveur Eureka ensuite le Proxy ensuite les autres microservices et à la fin l'application Springboot
+Le but de notre projet est l’assistance à l’ingénierie du logiciel pour garantir la protection de la vie privée. L’idée principale de ces travaux est de proposer une méthode qui assiste les ingénieurs du logiciel, lors du développement de nouvelles applications ou lors de la maintenance d’applications existantes, dans la gestion des données personnelles des
+utilisateurs et la garantie du respect des réglementations en vigueur sur le sujet.
 
-### il vous faut aussi creer les bases de données suivantes : GPDR,GPRD_MICROSERVICE_PROCESSINGS,GDPR_MICROSERVICE_CONSENTS, et aussi configurer les credentials de votre base de données dans le fichier cloud-conf\*
+Ce projet contient des microservices développer par différents technologies (ExpressJS, SpringBoot, Flask, Angular), donc pour les éxecuter il faut suivre les étapes suivantes en ordre.
 
-- Il vous faut alors créer un repository git dans le dossier users de votre machine que vous allez appeler cloud-conf et la vous allez mettre vos configuration pour les microservices springboot vous trouverez notre cloud-conf dans ce repo mais vous devez le déplacer sur 'C:/utilisateurs/USERNAME/' à savoir que notre exemple cloud conf n'est pas un repo donc il faut aprés l'ajout executer les commandes suivantes
-  -- git init
-  -- git add .
-  et chaque fois vous ajouter une modification il faut forcement re executer la commande git add . et aussi relancer le serveur de configuration
+Notre architecture microservices est développer en SpringBoot qui contients un service d'enregistrement Eureka, un serveur de configuration des services springboot en spring cloud config pour centraliser les configurations et aussi un service proxy Zuul pour intercepter les requétes qui viennent depuis l'application front-end.
+
+Alors il faut tout d'abord executer le service de configuration et aprés d'enregistrement et aprés le proxy et à la fin le reste des microservices peu importe leurs ordres.
+
+## Getting Started <a name = "getting_started"></a>
+
+### configuration file
+
+Tout d'abord il faut couper le répertoire cloud-conf et le mettre dans n'importe quel emplacement vous voulez en local et puis ce positionner dans ce répertoire et éxecuter les commandes suivantes :
+_ git init
+_ git add .
+Et aprés il faut changer le chemin dans le fichier de configuartion du service de configuration (service-configuration) il faut suivre les étapes suivantes :
+_ Ouvrir le fichier ./service-configuration/src/main/resources/application.properties
+_ Mettre le chemin du repertoire cloud-conf que vous avez choisi dans la propriété suivante spring.cloud.config.server.git.uri="./your/path" (par exemple file://${user.home}/cloud-conf)
+
+### Run configuration service
+
+Il faut ce positioner sur le dossier target du projet 'service-configuration' et éxecuter la commande : java -jar service-configuration-0.0.1-SNAPSHOT
+
+### Run registry service
+
+Il faut ce positioner sur le dossier target du projet 'service-register' et éxecuter la commande : java -jar service-register-0.0.1-SNAPSHOT
+
+### Run proxy service
+
+Il faut ce positioner sur le dossier target du projet 'service-proxy' et éxecuter la commande : java -jar service-proxy-0.0.1-SNAPSHOT
+
+### Run processing service
+
+Il faut ce positioner sur le dossier target du projet 'service-processing' et éxecuter la commande : java -jar service-company-0.0.1-SNAPSHOT
+
+### Run consent service
+
+Il faut ce positioner sur le dossier target du projet 'Consent-service' il faut modifier d'abord dans le fichier bdd.py les configurations de la base de données et éxecuter les commandes suivantes :
+_ pip install py-eureka-client
+_ pip install mysql-connector-python
+_ py ./bdd.py
+_ py ./app.py
+
+### Run consent service
+
+Il faut ce positioner sur le dossier target du projet 'Consent-service' il faut modifier d'abord dans le fichier bdd.py les configurations de la base de données et éxecuter les commandes suivantes :
+_ pip install py-eureka-client
+_ pip install mysql-connector-python
+_ py ./bdd.py
+_ py ./app.py
+
+### Run Data & DataSubject service
+
+    * Create a mysql database
+    * Fill the .env file in GDPR_HELPER/API/
+    `DATABASE_URL="mysql://username:password@host:port/DatabaseName"` corresponding to the authentication URL to the database.
+    * `ADMIN_API_KEY` is the key that will be used by external clients to access GDPRMS
+    * `API_ENDPOINT_PROCESS_DATA_REQUEST_ANSWERS="http://localhost:2000/processAnswers"` Is the address to the endpoint of the Provider Application api that is used by the server to notify the Provider server that new data request answers need to be processed.
+
+    * Run `cd .\GDPR_HELPER\API\`
+    * Run `npm install`
+    * Run  `npx prisma db push`
+    * Run `npm run start`
+
+### Prerequisites
+
+Vous aurez besoin de : 1. Install Node JS 2. Install Maven 3. Install Java 11+ 4. Install Python 5. Install pip 6. Install Eclipse (Optional to run springboot microservices)
+
+## Usage <a name = "usage"></a>
+
+Pour vérifier que tout les services de l'architecture son éxécuter sans problémes il faut vérifier qu'il sont détectable par le service d'enregistrement Eureka (Eureka Clients) on peut vérifier ça dans http://localhost:8760
