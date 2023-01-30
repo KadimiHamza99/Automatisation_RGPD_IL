@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [about](#about)
+- [About](#about)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 
