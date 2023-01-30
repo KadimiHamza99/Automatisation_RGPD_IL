@@ -55,14 +55,6 @@ _ pip install mysql-connector-python
 _ py ./bdd.py
 _ py ./app.py
 
-### Run consent service
-
-_ Il faut ce positioner sur le dossier target du projet 'Consent-service' il faut modifier d'abord dans le fichier bdd.py les configurations de la base de données et éxecuter les commandes suivantes :
-_ pip install py-eureka-client
-_ pip install mysql-connector-python
-_ py ./bdd.py
-_ py ./app.py
-
 ### Run Data & DataSubject service
 
     * Create a mysql database
