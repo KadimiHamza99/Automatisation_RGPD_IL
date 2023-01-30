@@ -18,7 +18,7 @@
 
 ## Getting Started <a name = "getting_started"></a>
 
-### configuration file
+### Configuration file
 
 _Tout d'abord il faut couper le répertoire cloud-conf et le mettre dans n'importe quel emplacement vous voulez en local et puis ce positionner dans ce répertoire et éxecuter les commandes suivantes :
 _ git init
