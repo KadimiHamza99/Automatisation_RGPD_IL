@@ -80,4 +80,4 @@ _Vous aurez besoin de :
 
 ## Usage <a name = "usage"></a>
 
-Pour vérifier que tout les services de l'architecture son éxécuter sans problémes il faut vérifier qu'il sont détectable par le service d'enregistrement Eureka (Eureka Clients) on peut vérifier ça dans : `http://localhost:8760`
+Pour vérifier que tous les services de l'architecture sont éxécutés sans problème, il faut vérifier qu'ils sont détectables par le service d'enregistrement Eureka (Eureka Clients) on peut vérifier ça en navigant l'URL : `http://localhost:8760`
