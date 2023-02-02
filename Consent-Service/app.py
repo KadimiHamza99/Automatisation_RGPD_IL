@@ -1,6 +1,5 @@
 import atexit
-from flask import Flask, jsonify
-import requests
+from flask import Flask, jsonify, request
 import py_eureka_client.eureka_client as eureka_client
 import contract
 
@@ -34,14 +33,14 @@ def hello_world():
 
 @app.route('/consent/processing')
 def get_processing(processingId):
-    response = requests.get('http://localhost:8080/processing/:'+processingId)
+    response = request.get('http://localhost:8080/processing/:'+processingId)
     data = response.json()
     return jsonify(data)
 
 
 @app.route('/consent/processing/cat')
 def get_processings(dscId):
-    response = requests.get('http://localhost:8080/processing/:'+dscId)
+    response = request.get('http://localhost:8080/processing/:'+dscId)
     data = response.json()
     return jsonify(data)
 
@@ -66,7 +65,7 @@ def get_contractByDataSubjectId(dsId):
 
 @app.route('/consent/dataSubject')
 def get_dataSubject(dataSubjectId):
-    response = requests.get('http://localhost:8080/express/dataSubject/getById/:'+dataSubjectId)
+    response = request.get('http://localhost:8080/express/dataSubject/getById/:'+dataSubjectId)
     data = response.json()
     return jsonify(data)
 
