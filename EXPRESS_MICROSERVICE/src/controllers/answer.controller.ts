@@ -8,7 +8,6 @@ class AnswersController {
   public getAnswers = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const findAllAnswersData: gdpr_datarequestanswer[] = await this.answerService.findAllAnswer();
-
       res.status(200).json({ data: findAllAnswersData, message: 'findAll' });
     } catch (error) {
       next(error);

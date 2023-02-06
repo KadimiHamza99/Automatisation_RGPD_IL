@@ -16,6 +16,7 @@ class AnswerService {
   public async findAllAnswer(): Promise<gdpr_datarequestanswer[]> {
     return await this.answers.findMany();
   }
+
   public async findAllUnprocessedAnswer(): Promise<gdpr_datarequestanswer[]> {
     return await this.answers.findMany({
       where: { processedAnswer: false },
