@@ -1,0 +1,78 @@
+{
+  "Data": [
+    {
+      "dataID": 1,
+      "source": "Source1",
+      "dataConservation": 1,
+      "isPersonal": true,
+      "isModifiable": true,
+      "dataTypeID": 1,
+      "data_ID_ref": 2,
+      "dataSubjectCategoryID": 1,
+      "creationDate": null,
+      "lastModificationDate": null,
+      "deletionDate": null,
+      "attributeName": "name1",
+      "isDeleted":false
+    },
+    {
+      "dataID": 2,
+      "source": "Source2",
+      "dataConservation": 1,
+      "isPersonal": true,
+      "isModifiable": true,
+      "dataTypeID": 1,
+      "data_ID_ref": 2,
+      "dataSubjectCategoryID": 1,
+      "creationDate": null,
+      "lastModificationDate": null,
+      "deletionDate": null,
+      "attributeName": "name2",
+      "isDeleted":false
+    },
+    {
+      "dataID": 3,
+      "source": "Source3",
+      "dataConservation": 1,
+      "isPersonal": true,
+      "isModifiable": true,
+      "dataTypeID": 1,
+      "data_ID_ref": 2,
+      "dataSubjectCategoryID": 2,
+      "creationDate": null,
+      "lastModificationDate": null,
+      "deletionDate": null,
+      "attributeName": "name3",
+      "isDeleted":false
+    }
+  ],
+  "DataSubject": [
+    {
+      "dataSubjectId":1,
+      "age":81,
+      "referenceID":"REF1ID"
+    },
+    {
+      "dataSubjectId":2,
+      "age":21,
+      "referenceID":"REF2ID"
+    }
+  ],
+  "DataSubjectCategory": [
+    {
+      "dsCategoryID":1,
+      "dsCategoryName":"Patient",
+      "locationID":1
+    },
+    {
+      "dsCategoryID":2,
+      "dsCategoryName":"Doctor",
+      "locationID":2
+    },
+    {
+      "dsCategoryID":3,
+      "dsCategoryName":"Provider",
+      "locationID":1
+    }
+  ]
+}

@@ -58,6 +58,19 @@ public class Processing {
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Purpose> purposes;
 	
+	public Processing(String name, ProcessingType type, ProcessingCategory category, Date creationDate,
+			Date updatingDate, List<DataUsage> dataUsages, List<Purpose> purposes, List<Mesure> mesures) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.category = category;
+		this.creationDate = creationDate;
+		this.updatingDate = updatingDate;
+		this.dataUsages = dataUsages;
+		this.purposes = purposes;
+		this.mesures = mesures;
+	}
+
 	@ManyToMany
 	@JoinTable(name = "gdpr_ProcessingMesure", joinColumns = @JoinColumn(name = "processingID", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "mesureID", referencedColumnName = "mesureID"))
 	private List<Mesure> mesures;
