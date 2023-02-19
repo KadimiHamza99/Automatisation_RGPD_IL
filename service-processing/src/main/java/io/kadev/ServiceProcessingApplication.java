@@ -58,9 +58,28 @@ public class ServiceProcessingApplication {
 			dataUsages.add(dataUsage1);
 			dataUsages.add(dataUsage2);
 			
+			
+			
+			
+			
+			
+			List<DataUsage> dataUsages1 = new ArrayList<DataUsage>();		
+			List<Purpose> purposes1 = new ArrayList<Purpose>();
+			List<Mesure> mesures1 = new ArrayList<Mesure>();
+			Processing processing1 = new Processing("Processing2",ProcessingType.DEFAULT,
+					ProcessingCategory.LEGITIMATE_INTEREST,new Date(),new Date(),dataUsages,purposes1,mesures1);
+			DataUsage dataUsage11 = new DataUsage(false,false,true,true,true,processing,1);
+			DataUsage dataUsage21 = new DataUsage(true,false,true,false,false,processing,2);
+			dataUsages1.add(dataUsage11);
+			dataUsages1.add(dataUsage21);
+			
 			processingService.createProcessing(processing);
 			dataUsageService.createDataUsage(dataUsage1);
 			dataUsageService.createDataUsage(dataUsage2);
+			
+//			processingService.createProcessing(processing1);
+//			dataUsageService.createDataUsage(dataUsage11);
+//			dataUsageService.createDataUsage(dataUsage21);
 			
 		};
 	}
