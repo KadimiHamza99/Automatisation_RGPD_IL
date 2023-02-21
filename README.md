@@ -8,19 +8,22 @@
 
 ## About <a name = "about"></a>
 
-    Le but de notre projet est l’assistance à l’ingénierie du logiciel pour garantir la protection de la vie privée. L’idée principale de ces travaux est de proposer une méthode qui assiste les ingénieurs du logiciel, lors du développement de nouvelles applications ou lors de la maintenance d’applications existantes, dans la gestion des données personnelles des utilisateurs et la garantie du respect des réglementations en vigueur sur le sujet.
+ Le but de notre projet est l’assistance à l’ingénierie du logiciel pour garantir la protection de la vie privée. L’idée principale de ces travaux est de proposer une méthode qui assiste les ingénieurs du logiciel, lors du développement de nouvelles applications ou lors de la maintenance d’applications existantes, dans la gestion des données personnelles des utilisateurs et la garantie du respect des réglementations en vigueur sur le sujet.
 
-    Ce projet contient des microservices développer par différents technologies (ExpressJS, SpringBoot, Flask, Angular), donc pour les éxecuter il faut suivre les étapes suivantes en ordre.
+ Ce projet contient des microservices développer par différents technologies (ExpressJS, SpringBoot, Flask, Angular), donc pour les éxecuter il faut suivre les étapes suivantes en ordre.
 
-    Notre architecture microservices est développer en SpringBoot qui contients un service d'enregistrement Eureka, un serveur de configuration des services springboot en spring cloud config pour centraliser les configurations et aussi un service proxy Zuul pour intercepter les requétes qui viennent depuis l'application front-end.
+ Notre architecture microservices est développer en SpringBoot qui contients un service d'enregistrement Eureka, un serveur de configuration des services springboot en spring cloud config pour centraliser les configurations et aussi un service proxy Zuul pour intercepter les requétes qui viennent depuis l'application front-end.
 
-    Alors il faut tout d'abord executer le service de configuration et aprés d'enregistrement et aprés le proxy et à la fin le reste des microservices peu importe leurs ordres.
+ Alors il faut tout d'abord executer le service de configuration et aprés d'enregistrement et aprés le proxy et à la fin le reste des microservices peu importe leurs ordres.
 
 ## Getting Started <a name = "getting_started"></a>
 
+### Ports in use
+    Ports: 8080, 8082, 8760, 8079, 4000, 5000, 4200, 3000 -> (JSON SERVER FOR TEST).
+
 ### configuration file
 
-    Tout d'abord il faut couper le répertoire cloud-conf et le mettre dans n'importe quel emplacement vous voulez en local et puis ce positionner dans ce répertoire et éxecuter les commandes suivantes :
+    - Tout d'abord il faut couper le répertoire cloud-conf et le mettre dans n'importe quel emplacement vous voulez en local et puis ce positionner dans ce répertoire et éxecuter les commandes suivantes :
     * git init
     * git add .
     Et aprés il faut changer le chemin dans le fichier de configuartion du service de configuration (service-configuration) il faut suivre les étapes suivantes :
@@ -29,22 +32,22 @@
 
 ### Run configuration service
 
-    Il faut ce positioner sur le dossier target du projet 'service-configuration' et éxecuter la commande : \
+    - Il faut ce positioner sur le dossier target du projet 'service-configuration' et éxecuter la commande : \
     * java -jar service-configuration-0.0.1-SNAPSHOT
 
 ### Run registry service
 
-    Il faut ce positioner sur le dossier target du projet 'service-register' et éxecuter la commande : \
+    - Il faut ce positioner sur le dossier target du projet 'service-register' et éxecuter la commande : \
     * java -jar service-register-0.0.1-SNAPSHOT
 
 ### Run proxy service
 
-    Il faut ce positioner sur le dossier target du projet 'service-proxy' et éxecuter la commande : \
+    - Il faut ce positioner sur le dossier target du projet 'service-proxy' et éxecuter la commande : \
     * java -jar service-proxy-0.0.1-SNAPSHOT
 
 ### Run processing service
 
-    Il faut ce positioner sur le dossier target du projet 'service-processing' et éxecuter la commande :
+    - Il faut ce positioner sur le dossier target du projet 'service-processing' et éxecuter la commande :
     * java -jar service-company-0.0.1-SNAPSHOT
 
 ### Run consent service
@@ -67,6 +70,10 @@
     * Run `npm install`
     * Run  `npx prisma db push`
     * Run `npm run start`
+
+### Run Test Server
+    Ce positionner sur le répertoire JSON_SERVER4TEST et dans une ligne de commande executer la commande suivante :
+        * npm run start
 
 ### Prerequisites
 

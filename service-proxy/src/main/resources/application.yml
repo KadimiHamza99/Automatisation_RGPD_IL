@@ -16,6 +16,11 @@ spring:
             http://localhost:4000/
           predicates:
           - Path=/express/**
+        - id: express
+          uri:
+            http://localhost:5000/
+          predicates:
+          - Path=/consent/**
      
     
 eureka:

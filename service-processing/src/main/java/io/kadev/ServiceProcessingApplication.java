@@ -77,9 +77,9 @@ public class ServiceProcessingApplication {
 			dataUsageService.createDataUsage(dataUsage1);
 			dataUsageService.createDataUsage(dataUsage2);
 			
-//			processingService.createProcessing(processing1);
-//			dataUsageService.createDataUsage(dataUsage11);
-//			dataUsageService.createDataUsage(dataUsage21);
+			processingService.createProcessing(processing1);
+			dataUsageService.createDataUsage(dataUsage11);
+			dataUsageService.createDataUsage(dataUsage21);
 			
 		};
 	}
