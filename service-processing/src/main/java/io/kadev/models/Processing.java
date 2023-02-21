@@ -42,12 +42,12 @@ public class Processing {
 	
 	private ProcessingCategory category;
 	
-	@Column(nullable = false,updatable = false)
+	@Column(nullable = true,updatable = false)
 	@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@LastModifiedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updatingDate;

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -38,9 +39,9 @@ public class ProcessingController {
 		return service.createProcessing(processing);
 	}
 	
-	@PutMapping("/update")
-	public Processing modifyProcessing(Processing processing) {
-		return service.updateProcessing(processing);
+	@PutMapping("/update/{processingId}")
+	public Processing modifyProcessing(@PathVariable Long processingId, @RequestBody Processing processing) {
+		return service.updateProcessing(processingId,processing);
 	}
 	
 	@GetMapping("/{id}")
@@ -79,29 +80,4 @@ public class ProcessingController {
 		return result;
 	}
 	
-//	static boolean flag = false;
-//	@GetMapping("/dsc/{dscID}")
-//	public Collection<ProcessingApiResponse> getProcessings(@PathVariable int dscID){
-//		Collection<Processing> processings = service.getProcessings();
-//		List<ProcessingApiResponse> responses = new ArrayList<ProcessingApiResponse>();
-//		processings.stream().forEach(processing -> {
-//			List<GdprData> datas = new ArrayList<GdprData>();
-//			List<DataSubjectCategory> dscs = new ArrayList<DataSubjectCategory>(); 
-//			processing.getDataUsages().stream().forEach(dataUsage->{
-//				GdprData[] data = template.getForObject("http://localhost:3000/Data?dataID="+dataUsage.getDataId(), GdprData[].class);		
-//				if(data[0].getDataSubjectCategoryID()==dscID) {
-//					datas.add(data[0]);
-//					DataSubjectCategory dsc = template.getForObject("http://localhost:3000/DataSubjectCategory?dsCategoryID="+data[0].getDataSubjectCategoryID(), DataSubjectCategory.class);
-//					dscs.add(dsc);
-//					flag = true;
-//				}		
-//			});
-//			if(flag) {
-//				ProcessingApiResponse response = new ProcessingApiResponse(processing,datas,dscs);
-//				responses.add(response);
-//				flag=false;
-//			}
-//		});
-//		return responses;
-//	}
 }

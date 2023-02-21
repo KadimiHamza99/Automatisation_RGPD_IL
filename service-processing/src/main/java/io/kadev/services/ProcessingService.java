@@ -1,6 +1,7 @@
 package io.kadev.services;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -30,11 +31,20 @@ public class ProcessingService implements ProcessingServiceInterface  {
 	}
 
 	@Override
-	public Processing updateProcessing(Processing processing) {
+	public Processing updateProcessing(Long id,Processing processing) {
 		log.info("UpdateProcessing start Process !");
-		Processing res = repository.save(processing);
+		Processing oldProcessing = repository.findById(id).get();
+		oldProcessing.setCategory(processing.getCategory());
+		oldProcessing.setCreationDate(processing.getCreationDate());
+		oldProcessing.setDataUsages(processing.getDataUsages());
+		oldProcessing.setMesures(processing.getMesures());
+		oldProcessing.setName(processing.getName());
+		oldProcessing.setPurposes(processing.getPurposes());
+		oldProcessing.setType(processing.getType());
+		oldProcessing.setUpdatingDate(new Date());
+		repository.save(oldProcessing);
 		log.info("UpdateProcessing end Process !");
-		return res;
+		return oldProcessing;
 	}
 
 	@Override
