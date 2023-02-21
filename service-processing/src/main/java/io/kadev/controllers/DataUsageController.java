@@ -40,18 +40,18 @@ public class DataUsageController {
 	@GetMapping("/{id}")
 	public DataUsageApiResponse getDataUsage(@PathVariable Long id) {
 		DataUsage dataUsage = service.getDataUsage(id);
-		GdprData data = template.getForObject("http:localhost:8080/express"+dataUsage.getDataId(), 
-				GdprData.class);
-		return new DataUsageApiResponse(data, dataUsage);
+		GdprData[] data = template.getForObject("http:localhost:3000/Data?dataID="+dataUsage.getDataId(), 
+				GdprData[].class);
+		return new DataUsageApiResponse(data[0], dataUsage);
 	}
 	
 	@GetMapping("")
 	public List<DataUsageApiResponse> getDataUsages(){
 		List<DataUsageApiResponse> response = new ArrayList<DataUsageApiResponse>() ;
 		service.getDataUsages().stream().forEach(dataUsage->{
-			GdprData data = template.getForObject("http:localhost:8080/express"+dataUsage.getDataId(), 
-					GdprData.class);
-			response.add(new DataUsageApiResponse(data,dataUsage));
+			GdprData[] data = template.getForObject("http:localhost:3000/Data?dataID="+dataUsage.getDataId(), 
+					GdprData[].class);
+			response.add(new DataUsageApiResponse(data[0],dataUsage));
 		});
 		return response;
 	}

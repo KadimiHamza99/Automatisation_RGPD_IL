@@ -23,11 +23,11 @@ import lombok.NoArgsConstructor;
 public class Purpose {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long purposeID;
+	private int purposeID;
 	@Column(nullable = false)
 	private String description;
 	private PurposeType type;
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	private Processing processing;
+//	@JsonIgnore
+//	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//	private Processing processing;
 }

@@ -19,10 +19,12 @@ import io.kadev.dto.ProcessingApiResponse;
 import io.kadev.models.Processing;
 import io.kadev.services.ProcessingServiceInterface;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/processing")
 @AllArgsConstructor
+@Slf4j
 public class ProcessingController {
 	
 	@Autowired
@@ -47,31 +49,59 @@ public class ProcessingController {
 		List<GdprData> datas = new ArrayList<GdprData>();
 		List<DataSubjectCategory> dscs = new ArrayList<DataSubjectCategory>(); 
 		processing.getDataUsages().stream().forEach(dataUsage->{
-			GdprData data = template.getForObject("http://localhost:8080/express/data/getById/"+dataUsage.getDataId(), GdprData.class);
-			datas.add(data);
-			DataSubjectCategory dsc = template.getForObject("http://localhost:8080/express/dataSubjectCategory/getById/"+data.getDataSubjectCategoryID(), DataSubjectCategory.class);
-			dscs.add(dsc);
+			GdprData[] data = template.getForObject("http://localhost:3000/Data?dataID="+dataUsage.getDataId(), GdprData[].class);
+			datas.add(data[0]);
+			DataSubjectCategory[] dsc = template.getForObject("http://localhost:3000/DataSubjectCategory?dsCategoryID="+data[0].getDataSubjectCategoryID(), DataSubjectCategory[].class);
+			dscs.add(dsc[0]);
 		});
 		ProcessingApiResponse response = new ProcessingApiResponse(processing,datas,dscs);
 		return response;
 	}
 	
-	@GetMapping("{dscID}")
-	public Collection<ProcessingApiResponse> getProcessings(@PathVariable int dscID){
-		Collection<Processing> processings = service.getProcessings();
-		List<ProcessingApiResponse> responses = new ArrayList<ProcessingApiResponse>();
-		processings.stream().forEach(processing -> {
+	@GetMapping("/dsc/{dscID}")
+	public Collection<ProcessingApiResponse> getProcessingsByDscID(@PathVariable int dscID){
+		List<ProcessingApiResponse> result = new ArrayList<ProcessingApiResponse>();
+		service.getProcessings().stream().forEach(processing->{
 			List<GdprData> datas = new ArrayList<GdprData>();
-			List<DataSubjectCategory> dscs = new ArrayList<DataSubjectCategory>(); 
+			List<DataSubjectCategory> dscs = new ArrayList<DataSubjectCategory>();
 			processing.getDataUsages().stream().forEach(dataUsage->{
-				GdprData data = template.getForObject("http://localhost:8080/express/data/getById/"+dataUsage.getDataId(), GdprData.class);
-				datas.add(data);
-				DataSubjectCategory dsc = template.getForObject("http://localhost:8080/express/dataSubjectCategory/getById/"+data.getDataSubjectCategoryID(), DataSubjectCategory.class);
-				dscs.add(dsc);
+				GdprData[] data = template.getForObject("http://localhost:3000/Data?dataID="+dataUsage.getDataId()
+						,GdprData[].class);
+				if(data[0].getDataSubjectCategoryID()==dscID) {
+					DataSubjectCategory[] dsc = template.getForObject("http://localhost:3000/DataSubjectCategory?dsCategoryID="+data[0].getDataSubjectCategoryID(), 
+							DataSubjectCategory[].class);
+					datas.add(data[0]);
+					dscs.add(dsc[0]);
+				}
 			});
-			ProcessingApiResponse response = new ProcessingApiResponse(processing,datas,dscs);
-			responses.add(response);
+			result.add(new ProcessingApiResponse(processing,datas,dscs));
 		});
-		return responses;
+		return result;
 	}
+	
+//	static boolean flag = false;
+//	@GetMapping("/dsc/{dscID}")
+//	public Collection<ProcessingApiResponse> getProcessings(@PathVariable int dscID){
+//		Collection<Processing> processings = service.getProcessings();
+//		List<ProcessingApiResponse> responses = new ArrayList<ProcessingApiResponse>();
+//		processings.stream().forEach(processing -> {
+//			List<GdprData> datas = new ArrayList<GdprData>();
+//			List<DataSubjectCategory> dscs = new ArrayList<DataSubjectCategory>(); 
+//			processing.getDataUsages().stream().forEach(dataUsage->{
+//				GdprData[] data = template.getForObject("http://localhost:3000/Data?dataID="+dataUsage.getDataId(), GdprData[].class);		
+//				if(data[0].getDataSubjectCategoryID()==dscID) {
+//					datas.add(data[0]);
+//					DataSubjectCategory dsc = template.getForObject("http://localhost:3000/DataSubjectCategory?dsCategoryID="+data[0].getDataSubjectCategoryID(), DataSubjectCategory.class);
+//					dscs.add(dsc);
+//					flag = true;
+//				}		
+//			});
+//			if(flag) {
+//				ProcessingApiResponse response = new ProcessingApiResponse(processing,datas,dscs);
+//				responses.add(response);
+//				flag=false;
+//			}
+//		});
+//		return responses;
+//	}
 }

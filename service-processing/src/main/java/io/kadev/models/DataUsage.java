@@ -39,4 +39,16 @@ public class DataUsage {
 	private Processing processing;
 	
 	private int dataId;
+
+	public DataUsage(boolean personalStatus, boolean c, boolean r, boolean u, boolean d, Processing processing,
+			int dataId) {
+		super();
+		this.personalStatus = personalStatus;
+		this.c = c;
+		this.r = r;
+		this.u = u;
+		this.d = d;
+		this.processing = processing;
+		this.dataId = dataId;
+	}
 }
