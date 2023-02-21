@@ -23,28 +23,28 @@
 _Tout d'abord il faut couper le répertoire cloud-conf et le mettre dans n'importe quel emplacement vous voulez en local et puis ce positionner dans ce répertoire et éxecuter les commandes suivantes :
 _ git init
 _ git add .
-_Et aprés il faut changer le chemin dans le fichier de configuartion du service de configuration (service-configuration) il faut suivre les étapes suivantes :
+\_Et aprés il faut changer le chemin dans le fichier de configuartion du service de configuration (service-configuration) il faut suivre les étapes suivantes :
 _ Ouvrir le fichier ./service-configuration/src/main/resources/application.properties
-_ Mettre le chemin du repertoire cloud-conf que vous avez choisi dans la propriété suivante spring.cloud.config.server.git.uri="./your/path" (par exemple file://${user.home}/cloud-conf)
+\_ Mettre le chemin du repertoire cloud-conf que vous avez choisi dans la propriété suivante spring.cloud.config.server.git.uri="./your/path" (par exemple file://${user.home}/cloud-conf)
 
 ### Run configuration service
 
-_ Il faut ce positioner sur le dossier target du projet 'service-configuration' et éxecuter la commande : \
+\_ Il faut ce positioner sur le dossier target du projet 'service-configuration' et éxecuter la commande : \
  \* java -jar service-configuration-0.0.1-SNAPSHOT
 
 ### Run registry service
 
-_ Il faut ce positioner sur le dossier target du projet 'service-register' et éxecuter la commande : \
+\_ Il faut ce positioner sur le dossier target du projet 'service-register' et éxecuter la commande : \
  \* java -jar service-register-0.0.1-SNAPSHOT
 
 ### Run proxy service
 
-_ Il faut ce positioner sur le dossier target du projet 'service-proxy' et éxecuter la commande : \
+\_ Il faut ce positioner sur le dossier target du projet 'service-proxy' et éxecuter la commande : \
  \* java -jar service-proxy-0.0.1-SNAPSHOT
 
 ### Run processing service
 
-_ Il faut ce positioner sur le dossier target du projet 'service-processing' et éxecuter la commande : \
+\_ Il faut ce positioner sur le dossier target du projet 'service-processing' et éxecuter la commande : \
  \* java -jar service-company-0.0.1-SNAPSHOT
 
 ### Run consent service
@@ -53,7 +53,7 @@ _ Il faut ce positioner sur le dossier target du projet 'Consent-service' il fau
 _ pip install py-eureka-client
 _ pip install mysql-connector-python
 _ py ./bdd.py
-_ py ./app.py
+\_ py ./app.py
 
 ### Run Data & DataSubject service
 
@@ -68,17 +68,21 @@ _ py ./app.py
     * Run  `npx prisma db push`
     * Run `npm run start`
 
+### Lancer le serveur de test
+
+    ce positionner sur le repertoire JSON_SERVER4TEST et lancer la commande npm run start
+
 ### Prerequisites
 
-_Vous aurez besoin de : 
-1. Install Node JS 
-2. Install Maven 
-3. Install Java 11+ 
-4. Install Python 
-5. Install pip 
+\_Vous aurez besoin de :
+
+1. Install Node JS
+2. Install Maven
+3. Install Java 11+
+4. Install Python
+5. Install pip
 6. Install Eclipse (Optional to run springboot microservices)
 
 ## Usage <a name = "usage"></a>
 
 Pour vérifier que tous les services de l'architecture sont éxécutés sans problème, il faut vérifier qu'ils sont détectables par le service d'enregistrement Eureka (Eureka Clients) on peut vérifier ça en navigant l'URL : `http://localhost:8760`
-
