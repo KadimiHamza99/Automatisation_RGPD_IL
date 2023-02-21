@@ -20,6 +20,12 @@ class Contract:
         row = mycursor.fetchall()
         return row
 
+    def findContractByDataSubjectId(self, dsid):
+        query = "SELECT contractId FROM contract WHERE dataSubjectId ="+str(dsid)
+        mycursor.execute(query)
+        row = mycursor.fetchall()
+        return row
+
     def findAllData(self):
         query = "SELECT * FROM contract"
         mycursor.execute(query)
@@ -31,5 +37,11 @@ class Contract:
         val = (data.signatureDate, data.expirationDate, data.dataSubjectId)
         mycursor.execute(query, val)
         mydb.commit()
+
+    def showAllProcessings(self, id):
+        query = "SELECT processingId FROM consent WHERE contractId =" + str(id)
+        mycursor.execute(query)
+        row = mycursor.fetchall()
+        return row
 
 

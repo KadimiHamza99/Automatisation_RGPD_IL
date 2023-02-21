@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-- [about](#about)
+- [About](#about)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 
@@ -18,7 +18,7 @@
 
 ## Getting Started <a name = "getting_started"></a>
 
-### configuration file
+### Configuration file
 
 _Tout d'abord il faut couper le répertoire cloud-conf et le mettre dans n'importe quel emplacement vous voulez en local et puis ce positionner dans ce répertoire et éxecuter les commandes suivantes :
 _ git init
@@ -55,14 +55,6 @@ _ pip install mysql-connector-python
 _ py ./bdd.py
 _ py ./app.py
 
-### Run consent service
-
-_ Il faut ce positioner sur le dossier target du projet 'Consent-service' il faut modifier d'abord dans le fichier bdd.py les configurations de la base de données et éxecuter les commandes suivantes :
-_ pip install py-eureka-client
-_ pip install mysql-connector-python
-_ py ./bdd.py
-_ py ./app.py
-
 ### Run Data & DataSubject service
 
     * Create a mysql database
@@ -88,4 +80,5 @@ _Vous aurez besoin de :
 
 ## Usage <a name = "usage"></a>
 
-Pour vérifier que tout les services de l'architecture son éxécuter sans problémes il faut vérifier qu'il sont détectable par le service d'enregistrement Eureka (Eureka Clients) on peut vérifier ça dans : `http://localhost:8760`
+Pour vérifier que tous les services de l'architecture sont éxécutés sans problème, il faut vérifier qu'ils sont détectables par le service d'enregistrement Eureka (Eureka Clients) on peut vérifier ça en navigant l'URL : `http://localhost:8760`
+
