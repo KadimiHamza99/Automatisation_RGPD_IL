@@ -1,0 +1,31 @@
+<div class="container-fluid pt-4 px-4">
+  <div class="bg-light text-center rounded p-4">
+      <div class="card" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{processing.name}}</h5>
+<!--          <p class="card-text">{{processing.address}}</p>-->
+<!--          <p class="card-text">{{processing.age}}</p>-->
+            <span>
+
+              <input (click)="onAgree()" *ngIf="!processing.isObligatory; else disabledBox" class="form-check-input" type="checkbox" value="" id="checkConsent" [(ngModel)]="processing.isChecked"  >
+              <label class="form-check-label" for="checkConsent">
+                I agree
+              </label>
+
+          <ng-template #disabledBox>
+            <input type="checkbox"  class="form-check-input" type="checkbox" value="" id="checkedConsent" checked disabled>
+          </ng-template>
+          <button (click)="onView()" class="btn btn-link ">Details<i class="bi bi-arrow-up-right"></i></button>
+            </span>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!--<a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>-->
+<!--<div class="collapse multi-collapse" id="multiCollapseExample1">-->
+<!--  <div class="card card-body">-->
+<!--    <app-processing-details></app-processing-details>-->
+<!--  </div>-->
+<!--</div>-->

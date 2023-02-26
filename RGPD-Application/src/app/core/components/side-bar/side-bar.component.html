@@ -1,0 +1,20 @@
+<div class="sidebar pe-4 pb-3">
+  <nav class="navbar bg-light navbar-light">
+    <a class="navbar-brand mx-4 mb-3" href="index.html">
+      <h3 class="text-primary"><i class="bi bi-house-door"></i>RGPD</h3>
+    </a>
+    <div class="d-flex align-items-center ms-4 mb-4">
+      <div class="position-relative">
+        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+      </div>
+
+    </div>
+    <div class="navbar-nav w-100">
+      <a  (click)="setActive(2)" [ngClass]="{'active': active === 2}" [routerLink]="['/consent']" class="nav-item nav-link"><i
+        class="fa fa-tachometer-alt me-2"></i>Consent</a>
+      <a (click)="setActive(3)" [ngClass]="{'active': active === 3}"[routerLink]="['/data']"class="nav-item nav-link"><i class="fa fa-table me-2"></i>Data</a>
+      <a (click)="setActive(4)" [ngClass]="{'active': active === 4}"[routerLink]="['/contract']" class="nav-item nav-link  "><i class="far fa-file-alt me-2"></i>Contrat</a>
+
+    </div>
+  </nav>
+</div>

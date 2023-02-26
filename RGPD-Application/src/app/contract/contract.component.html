@@ -1,0 +1,31 @@
+<div class="container-fluid pt-4 px-4">
+  <div class="bg-light text-center rounded p-4">
+    <h3 class="mb-0">Contract</h3>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Clauses</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let processing of processings">
+        <a aria-expanded="false" class="btn btn-link" data-bs-toggle="collapse" href="#multiCollapseExample1"
+           role="button">
+          <td>{{processing.name}}</td>
+        </a>
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <div class="card card-body">
+            <ol>
+              <li *ngFor="let pros of processing.purpose"> {{pros}}</li>
+            </ol>
+          </div>
+        </div>
+      </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>

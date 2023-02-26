@@ -1,0 +1,17 @@
+<div class="container-fluid pt-4 px-4">
+  <div class="bg-light text-center rounded p-4">
+      <h3 class="mb-0">Processing consent</h3>
+      <h6 class="text-left">
+        Please give your consent to the following processing.
+      </h6>
+      <i><p>
+        Note: Processing in <i class="bi bi-check-square-fill"></i> , are mandatory and you cannot uncheck them
+        because they are necessary for the operation of this application
+      </p></i>
+<!--    <form [formGroup]="consentForm">-->
+    <app-processing *ngFor="let processing of processings" [processing]="processing"></app-processing>
+    <button (click)="onSubmitForm()" type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+<!--    </form>-->
+  </div>
+</div>
+

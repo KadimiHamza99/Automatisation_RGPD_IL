@@ -1,0 +1,27 @@
+
+<script src="../app-routing.module.ts"></script>
+<div class="container-fluid pt-4 px-4">
+  <h4> Purpose(s):</h4>
+  <p *ngFor="let pros of processing.purpose"> {{pros}}</p>
+
+  <div class="bg-light text-center rounded p-4">
+  <table class="table table-borderles">
+    <thead class="table-light">
+    <tr>
+      <th scope="col" ></th>
+      <th scope="col" *ngFor="let header of headers">{{ header }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of rows">
+      <th scope="row">{{ row.title }}</th>
+        <td ><input type="checkbox" class="form-check-input" [checked]="processing.isCreatable" disabled></td>
+        <td ><input type="checkbox" class="form-check-input"[checked]="processing.isReadable" disabled></td>
+        <td ><input type="checkbox" class="form-check-input"[checked]="processing.isModifiable"disabled></td>
+        <td ><input type="checkbox" class="form-check-input" [checked]="processing.isDeleted"disabled></td>
+    </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+

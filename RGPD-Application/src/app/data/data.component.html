@@ -1,0 +1,66 @@
+<div class="container-fluid pt-4 px-4">
+  <div class="bg-light text-center rounded p-4">
+    <h3 class="mb-0">Data Management</h3>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th *ngFor="let header of headers" scope="col">{{ header }}</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let element of data ">
+        <td>{{element.attributeName}}</td>
+        <td>{{element.dataConservation}}</td>
+        <td>{{element.dataSource }}</td>
+        <td>{{element.isPersonal}}</td>
+        <td>{{element.isPortable}}</td>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Modify
+        </button>      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="newValue" class="col-form-label">New value:</label>
+            <input type="text" class="form-control" id="newValue">
+          </div>
+          <div class="mb-3">
+            <label for="claim" class="col-form-label">Claim:</label>
+            <input class="form-control" id="claim">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="collapse" href="#multiCollapseExample1">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collapse multi-collapse" id="multiCollapseExample1" >
+  <div class="card card-body">
+    <div class="alert alert-secondary" role="alert">
+     Request is pending !
+    </div>
+  </div>
+</div>
+
