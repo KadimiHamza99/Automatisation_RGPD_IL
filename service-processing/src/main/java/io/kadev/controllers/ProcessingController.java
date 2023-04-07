@@ -50,8 +50,14 @@ public class ProcessingController {
 		List<GdprData> datas = new ArrayList<GdprData>();
 		List<DataSubjectCategory> dscs = new ArrayList<DataSubjectCategory>(); 
 		processing.getDataUsages().stream().forEach(dataUsage->{
+			/*
+			 * Changer ici l'uri du microservice Data&DataSubject pour recupérer gdpr_data
+			 * */
 			GdprData[] data = template.getForObject("http://localhost:3000/Data?dataID="+dataUsage.getDataId(), GdprData[].class);
 			datas.add(data[0]);
+			/*
+			 * Changer ici l'uri du microservice Data&DataSubject pour recupérer gdpr_data_subject_category
+			 * */
 			DataSubjectCategory[] dsc = template.getForObject("http://localhost:3000/DataSubjectCategory?dsCategoryID="+data[0].getDataSubjectCategoryID(), DataSubjectCategory[].class);
 			dscs.add(dsc[0]);
 		});
@@ -66,9 +72,15 @@ public class ProcessingController {
 			List<GdprData> datas = new ArrayList<GdprData>();
 			List<DataSubjectCategory> dscs = new ArrayList<DataSubjectCategory>();
 			processing.getDataUsages().stream().forEach(dataUsage->{
+				/*
+				 * Changer ici l'uri du microservice Data&DataSubject pour recupérer gdpr_data
+				 * */
 				GdprData[] data = template.getForObject("http://localhost:3000/Data?dataID="+dataUsage.getDataId()
 						,GdprData[].class);
 				if(data[0].getDataSubjectCategoryID()==dscID) {
+					/*
+					 * Changer ici l'uri du microservice Data&DataSubject pour recupérer gdpr_data_subject_category
+					 * */
 					DataSubjectCategory[] dsc = template.getForObject("http://localhost:3000/DataSubjectCategory?dsCategoryID="+data[0].getDataSubjectCategoryID(), 
 							DataSubjectCategory[].class);
 					datas.add(data[0]);

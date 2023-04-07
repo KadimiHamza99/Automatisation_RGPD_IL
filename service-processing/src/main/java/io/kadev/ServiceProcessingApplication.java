@@ -75,8 +75,6 @@ public class ServiceProcessingApplication {
 			dataUsageService.createDataUsage(dataUsage1);
 			dataUsageService.createDataUsage(dataUsage2);
 			
-
-			
 		};
 	}
 
